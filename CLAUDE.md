@@ -17,7 +17,7 @@ Kotlin + Spring Boot 기반 채팅 서버. JPA(PostgreSQL)로 데이터 학습 �
 
 ## 코드 컨벤션
 - 엔티티는 `crud/entity`, 레포지토리는 `crud/repository` 등 기능별 하위 패키지로 나눈다.
-- 엔티티는 Kotlin `data class` + 기본 생성자(`constructor(): this(...)`) 패턴을 따른다 (JPA는 no-arg 생성자 필요).
+- 엔티티는 주 생성자 파라미터에 `@field:Column` 등 JPA 애노테이션을 직접 붙이는 패턴을 따른다. 더미 기본값(`= ""`, `= Sex.MALE` 등)이나 별도의 no-arg 생성자는 두지 않는다 — `kotlin-jpa` 플러그인(`build.gradle`)이 `@Entity` 클래스에 no-arg 생성자를 자동 생성해준다.
 - 엔티티에는 `@Id`를 반드시 명시한다.
 - 레포지토리는 Spring Data JPA의 `JpaRepository<Entity, IdType>` 인터페이스로 작성한다 (구현체 직접 작성 X).
 
